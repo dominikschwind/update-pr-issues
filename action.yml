@@ -1,7 +1,7 @@
 name: 'Update PR with Referenced Issues'
 description: 'Scans commits on a PR and updates the description with a list of referenced issue numbers (#1234 or (#1234)).'
 
-author: 'your-org'
+author: 'dominikschwind'
 
 branding:
   icon: 'link'
@@ -21,4 +21,4 @@ outputs:
 
 runs:
   using: 'node20'
-  main: 'dist/index.js'
+  main: 'dist/index.cjs'
