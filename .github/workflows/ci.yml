@@ -21,8 +21,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: test
-    # Only commit the dist on pushes to main (not on PRs)
-    if: github.event_name == 'push'
+    # Only commit the dist on pushes to main (not on PRs or tags)
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:
       contents: write
     env:
