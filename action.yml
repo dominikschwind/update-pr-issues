@@ -1,0 +1,24 @@
+name: 'Update PR with Referenced Issues'
+description: 'Scans commits on a PR and updates the description with a list of referenced issue numbers (#1234 or (#1234)).'
+
+author: 'your-org'
+
+branding:
+  icon: 'link'
+  color: 'blue'
+
+inputs:
+  github-token:
+    description: 'GitHub token with pull-requests:write permission'
+    required: true
+    default: ${{ github.token }}
+
+outputs:
+  pr-number:
+    description: 'The PR number that was updated'
+  issues-found:
+    description: 'Comma-separated list of issue numbers found (e.g. 1234,1235)'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
