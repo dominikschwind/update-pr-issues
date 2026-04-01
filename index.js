@@ -1,20 +1,18 @@
-const core = require('@actions/core');
-const { extractIssueNumbers, buildSection, updateBody } = require('./helpers');
+import * as core from '@actions/core';
+import * as github from '@actions/github';
+import { extractIssueNumbers, buildSection, updateBody } from './helpers.js';
 
 async function run() {
-  // @actions/github v9 is ESM-only, so we dynamic import it
-  const { getOctokit, context } = await import('@actions/github');
-
   const token = core.getInput('github-token', { required: true });
-  const octokit = getOctokit(token);
-  const { owner, repo } = context.repo;
+  const octokit = github.getOctokit(token);
+  const { owner, repo } = github.context.repo;
 
   let prNumber;
 
-  if (context.eventName === 'pull_request') {
-    prNumber = context.payload.pull_request.number;
-  } else if (context.eventName === 'push') {
-    const branch = context.ref.replace('refs/heads/', '');
+  if (github.context.eventName === 'pull_request') {
+    prNumber = github.context.payload.pull_request.number;
+  } else if (github.context.eventName === 'push') {
+    const branch = github.context.ref.replace('refs/heads/', '');
     core.info(`Looking for open PR on branch: ${branch}`);
 
     const { data: prs } = await octokit.rest.pulls.list({
@@ -31,7 +29,7 @@ async function run() {
 
     prNumber = prs[0].number;
   } else {
-    core.setFailed(`Unsupported event: ${context.eventName}`);
+    core.setFailed(`Unsupported event: ${github.context.eventName}`);
     return;
   }
 

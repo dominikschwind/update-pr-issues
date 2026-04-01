@@ -1,4 +1,4 @@
-const { extractIssueNumbers, buildSection, updateBody } = require('./helpers');
+import { extractIssueNumbers, buildSection, updateBody } from './helpers.js';
 
 describe('extractIssueNumbers', () => {
   test('extracts bare issue references', () => {
