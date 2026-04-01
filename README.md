@@ -27,7 +27,7 @@ jobs:
       pull-requests: write
       contents: read
     steps:
-      - uses: dominikschwind/update-pr-issues@v1
+      - uses: dominikschwind/update-pr-issues@v2
 ```
 
 The action adds a managed section to the PR description (preserving any text
