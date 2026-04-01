@@ -1,4 +1,4 @@
-const { extractIssueNumbers, buildSection, updateBody } = require('./index');
+const { extractIssueNumbers, buildSection, updateBody } = require('./helpers');
 
 describe('extractIssueNumbers', () => {
   test('extracts bare issue references', () => {
