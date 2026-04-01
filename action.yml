@@ -20,5 +20,5 @@ outputs:
     description: 'Comma-separated list of issue numbers found (e.g. 1234,1235)'
 
 runs:
-  using: 'node22'
+  using: 'node24'
   main: 'dist/index.cjs'
